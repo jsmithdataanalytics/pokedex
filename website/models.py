@@ -4,6 +4,9 @@ from django.db import models
 class Type(models.Model):
     name = models.CharField(max_length=10)
 
+    def __str__(self):
+        return f'Type({self.name})'
+
 
 class Pokemon(models.Model):
     number = models.IntegerField(unique=True)
@@ -20,3 +23,6 @@ class Pokemon(models.Model):
     defense = models.IntegerField()
     special = models.IntegerField()
     speed = models.IntegerField()
+
+    def __str__(self):
+        return f'Pokemon({self.name})'
