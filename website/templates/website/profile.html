@@ -1,15 +1,20 @@
-<h1>#{{ pokemon.number }} {{ pokemon.name.upper }}</h1>
-<ul>
-    <li>primary_type: {{ pokemon.primary_type.name }}</li>
-    <li>secondary_type: {{ pokemon.secondary_type.name|default:"none" }}</li>
-    <li>height: {{ pokemon.height }}</li>
-    <li>weight: {{ pokemon.weight }}</li>
-    <li>genus: {{ pokemon.genus }}</li>
-    <li>description: {{ pokemon.description }}</li>
-    <li>image: {{ pokemon.image }}</li>
-    <li>hp: {{ pokemon.hp }}</li>
-    <li>attack: {{ pokemon.attack }}</li>
-    <li>defense: {{ pokemon.defense }}</li>
-    <li>special: {{ pokemon.special }}</li>
-    <li>speed: {{ pokemon.speed }}</li>
-</ul>
+{% extends "website/base.html" %}
+{% block content %}
+    <h1 class="title is-1">#{{ pokemon.number }} {{ pokemon.name.upper }}</h1>
+    <div class="content">
+        <ul>
+            <li>primary_type: {{ pokemon.primary_type.name }}</li>
+            <li>secondary_type: {{ pokemon.secondary_type.name|default:"none" }}</li>
+            <li>height: {{ pokemon.height }}</li>
+            <li>weight: {{ pokemon.weight }}</li>
+            <li>genus: {{ pokemon.genus }}</li>
+            <li>description: {{ pokemon.description }}</li>
+            <li>image: {{ pokemon.image }}</li>
+            <li>hp: {{ pokemon.hp }}</li>
+            <li>attack: {{ pokemon.attack }}</li>
+            <li>defense: {{ pokemon.defense }}</li>
+            <li>special: {{ pokemon.special }}</li>
+            <li>speed: {{ pokemon.speed }}</li>
+        </ul>
+    </div>
+{% endblock %}

@@ -1,6 +1,11 @@
-<h1>Pokédex</h1>
-<ol>
-    {% for mon in mon_list %}
-    <li><a href="{% url 'website:profile' mon.number %}">{{ mon.name.upper }}</a></li>
-    {% endfor %}
-</ol>
+{% extends "website/base.html" %}
+{% block content %}
+    <h1 class="title is-1">Pokédex</h1>
+    <div class="content">
+        <ol type="1">
+            {% for mon in mon_list %}
+                <li><a href="{% url 'website:profile' mon.number %}">{{ mon.name.upper }}</a></li>
+            {% endfor %}
+        </ol>
+    </div>
+{% endblock %}
