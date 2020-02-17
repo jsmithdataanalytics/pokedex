@@ -1,16 +1,15 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.views import generic
+
 from website.models import Pokemon
 
 
-def index(request):
-    mons = Pokemon.objects.all().order_by('number')
-
-    return render(request, 'website/index.html', {'pokemon_list': mons})
+def home(request):
+    return render(request, 'website/home.html')
 
 
-class IndexView(generic.ListView):
-    template_name = 'website/index.html'
+class DexView(generic.ListView):
+    template_name = 'website/dex.html'
     context_object_name = 'mon_list'
 
     def get_queryset(self):
