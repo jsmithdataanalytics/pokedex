@@ -13,7 +13,7 @@ class DexView(generic.ListView):
     context_object_name = 'mon_list'
 
     def get_queryset(self):
-        return Pokemon.objects.all().order_by('number')
+        return Pokemon.objects.filter(name__startswith=self.request.GET.get('q', '')).order_by('number')
 
 
 class ProfileView(generic.DetailView):
