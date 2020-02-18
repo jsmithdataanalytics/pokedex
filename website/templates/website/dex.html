@@ -1,8 +1,14 @@
 {% extends "website/base.html" %}
 {% block style %}
-    <style>#logo {
-        margin-bottom : 10%;
-    }</style>
+    <style>
+        #logo {
+            margin-bottom : 10%;
+        }
+    
+        .mon-avatar {
+            padding: 20px;
+        }
+    </style>
 {% endblock %}
 {% block content %}
     {% load static %}
@@ -23,25 +29,28 @@
                         {% for mon in mon_list %}
                             <div class="tile is-parent is-3">
                                 <div class="tile is-child">
-                                    <div class="card">
-                                        <div class="card-image">
-                                            <figure class="image is-square">
-                                                <img src="
-                                                        {% with 'website/images/mons/'|add:mon.image as image_static %}{% static image_static %}{% endwith %}"
-                                                     alt="Avatar">
-                                            </figure>
-                                        </div>
-                                        <div class="card-content">
-                                            <div class="media">
-                                                <div class="media-content">
-                                                    <p class="title is-4">{{ mon.name.title }}</p>
+                                    <a href="{% url 'website:profile' mon.number %}">
+                                        <div class="card">
+                                            <div class="card-image mon-avatar">
+                                                <figure class="image is-square">
+                                                    <img src="
+                                                            
+                                                            {% with 'website/images/mons/'|add:mon.image as image_static %}{% static image_static %}{% endwith %}"
+                                                         alt="Avatar">
+                                                </figure>
+                                            </div>
+                                            <div class="card-content">
+                                                <div class="media">
+                                                    <div class="media-content">
+                                                        <p class="title is-4">{{ mon.name.title }}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="content">
+                                                    {{ mon.genus }}
                                                 </div>
                                             </div>
-                                            <div class="content">
-                                                {{ mon.genus }}
-                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                             </div>
                             <!-- if last column in row -->
