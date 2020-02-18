@@ -1,90 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    {% block title %}<title>Pokédex</title>{% endblock %}
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"/>
-    {% block style %}{% endblock %}
-    {% load static %}
-    <link rel="shortcut icon" href="{% static 'website/images/favicon.ico' %}"/>
-</head>
-<body>
-<nav class="navbar is-light" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-        <a class="navbar-item" href="/">
-            <img src="{% static 'website/images/icon.png' %}" width="28" height="28" alt="Logo">
-        </a>
+    <head>
+        {% block title %}<title>Pokédex</title>{% endblock %}
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"/>
+        <style>
+            body {
+                display        : flex;
+                min-height     : 100vh;
+                flex-direction : column;
+            }
 
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
-           data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-        </a>
-    </div>
-
-    <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-            <a class="navbar-item" href="/">
-                Home
-            </a>
-
-            <a class="navbar-item" href="{% url 'website:dex' %}">
-                Dex
-            </a>
-
-            <a class="navbar-item">
-                Who's That Pokémon?
-            </a>
-
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                    Other Projects
+            #wrapper {
+                flex : 1;
+            }
+        </style>
+        {% block style %}{% endblock %}
+        {% load static %}
+        <link rel="shortcut icon" href="{% static 'website/images/favicon.ico' %}"/>
+    </head>
+    <body>
+        <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="/">
+                    <img src="{% static 'website/images/icon.png' %}" width="28" height="28" alt="Logo">
                 </a>
 
-                <div class="navbar-dropdown">
-                    <a class="navbar-item" href="https://www.youtube.com/user/TraceurJames" target="new">
-                        YouTube
-                    </a>
-                    <a class="navbar-item" href="https://www.github.com/jsmithdataanalytics" target="new">
-                        GitHub
-                    </a>
-                </div>
-            </div>
-
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                    More
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                   data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
                 </a>
+            </div>
 
-                <div class="navbar-dropdown">
-                    <a class="navbar-item">
-                        About
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="/">
+                        Home
                     </a>
-                    <a class="navbar-item">
-                        Contact
+
+                    <a class="navbar-item" href="{% url 'website:dex' %}">
+                        Dex
                     </a>
-                    <hr class="navbar-divider">
+
                     <a class="navbar-item">
-                        Report an issue
+                        Who's That Pokémon?
                     </a>
+
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            Other Projects
+                        </a>
+
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item" href="https://www.youtube.com/user/TraceurJames" target="new">
+                                YouTube
+                            </a>
+                            <a class="navbar-item" href="https://www.github.com/jsmithdataanalytics" target="new">
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            More
+                        </a>
+
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item">
+                                About
+                            </a>
+                            <a class="navbar-item">
+                                Contact
+                            </a>
+                            <hr class="navbar-divider">
+                            <a class="navbar-item">
+                                Report an issue
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-danger">
+                                <strong>Sign up</strong>
+                            </a>
+                            <a class="button is-danger is-outlined">
+                                Log in
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </nav>
+        <div id="wrapper">
+            {% block content %}{% endblock %}
         </div>
-
-        <div class="navbar-end">
-            <div class="navbar-item">
-                <div class="buttons">
-                    <a class="button is-danger">
-                        <strong>Sign up</strong>
-                    </a>
-                    <a class="button is-danger is-outlined">
-                        Log in
-                    </a>
-                </div>
+        <footer class="footer">
+            <div class="content has-text-centered">
+                <p>
+                    <strong>Pokédex</strong> by <a href="https://www.github.com/jsmithdataanalytics">James Smith</a>.
+                    The source code is licensed <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
+                </p>
             </div>
-        </div>
-    </div>
-</nav>
-{% block content %}{% endblock %}
-</body>
+        </footer>
+    </body>
 </html> 

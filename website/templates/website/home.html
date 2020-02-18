@@ -1,29 +1,31 @@
 {% extends "website/base.html" %}
 {% block style %}
-<style>#logo{margin-top: 50px;}</style>
+    <style>#logo {
+        margin-top : 30%;
+    }</style>
 {% endblock %}
 {% block content %}
-{% load static %}
-<section class="section">
-    <div class="container">
-        <div class="columns is-centered">
-            <div class="column is-half">
-                <figure id="logo">
-                    <img src="{% static 'website/images/logo.png' %}" alt="Pokédex"/>
-                </figure>
+    {% load static %}
+    <section class="section">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-half">
+                    <figure id="logo">
+                        <img src="{% static 'website/images/logo.png' %}" alt="Pokédex"/>
+                    </figure>
+                </div>
             </div>
-        </div>
-        <div class="columns is-centered search">
-            <div class="column is-half">
-                <form action="{% url 'website:profile' 38 %}" method="get">
-                    <div class="field">
-                        <div class="control">
-                            <input class="input is-rounded" type="text" placeholder="Pokémon name" name="q">
+            <div class="columns is-centered search">
+                <div class="column is-half">
+                    <form action="{% url 'website:dex' %}" method="get">
+                        <div class="field">
+                            <div class="control">
+                                <input class="input is-rounded" type="text" placeholder="Search the dex" name="q">
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 {% endblock %}
