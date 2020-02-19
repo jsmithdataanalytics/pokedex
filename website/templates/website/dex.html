@@ -4,10 +4,78 @@
         #logo {
             margin-bottom : 10%;
         }
+
+        #search {
+            margin-top: 20px
+        }
     
         .mon-avatar {
             padding: 20px;
             background-color: lightgrey;
+        }
+        
+        .tag.type {
+            color: white;
+        }
+
+        .tag.type.grass-type {
+            background-color: green;
+        }
+
+        .tag.type.fire-type {
+            background-color: #fa5902;
+        }
+
+        .tag.type.ground-type {
+            background-color: #e3cd5f;
+        }
+
+        .tag.type.electric-type {
+            background-color: #e8e109;
+        }
+
+        .tag.type.water-type {
+            background-color: #5f62f5;
+        }
+
+        .tag.type.rock-type {
+            background-color: #a1852b;
+        }
+
+        .tag.type.flying-type {
+            background-color: #a882f5;
+        }
+
+        .tag.type.ice-type {
+            background-color: turquoise;
+        }
+
+        .tag.type.normal-type {
+            background-color: #adad86;
+        }
+
+        .tag.type.bug-type {
+            background-color: #a4cf23;
+        }
+
+        .tag.type.ghost-type {
+            background-color: #5f496e;
+        }
+
+        .tag.type.fighting-type {
+            background-color: brown;
+        }
+
+        .tag.type.dragon-type {
+            background-color: #2318ba;
+        }
+
+        .tag.type.psychic-type {
+            background-color: #e329b1;
+        }
+
+        .tag.type.poison-type {
+            background-color: purple;
         }
     </style>
 {% endblock %}
@@ -19,50 +87,107 @@
                 <div class="column is-half">
                     <figure id="logo">
                         <img src="{% static 'website/images/logo.png' %}" alt="Pokédex"/>
+                        <form action="{% url 'website:dex' %}" method="get" id="search">
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input is-rounded" type="text" placeholder="Search the dex" name="q">
+                                </div>
+                            </div>
+                        </form>
                     </figure>
                 </div>
             </div>
         </div>
         <div class="container">
-            <div class="tile is-ancestor">
-                <div class="tile is-vertical">
-                    <div class="tile">
-                        {% for mon in mon_list %}
-                            <div class="tile is-parent is-3">
-                                <div class="tile is-child">
-                                    <a href="{% url 'website:profile' mon.number %}">
-                                        <div class="card">
-                                            <div class="card-image mon-avatar">
-                                                <figure class="image is-square">
-                                                    <img src="
-                                                            
-                                                            {% with 'website/images/mons/'|add:mon.image as image_static %}{% static image_static %}{% endwith %}"
-                                                         alt="Avatar">
-                                                </figure>
-                                            </div>
-                                            <div class="card-content">
-                                                <div class="media">
-                                                    <div class="media-content">
-                                                        <p class="title is-4">{{ mon.name.title }}</p>
+            {% if not mon_list %}
+                <div class="columns is-centered">
+                    <div class="column is-half">
+                        <center><p><strong>No results</strong></p></center>
+                    </div>
+                </div>
+            {% else %}
+                <div class="tile is-ancestor">
+                    <div class="tile is-vertical">
+                        <div class="tile">
+                            {% for mon in mon_list %}
+                                <div class="tile is-parent is-3">
+                                    <div class="tile is-child">
+                                        <a href="{% url 'website:profile' mon.number %}">
+                                            <div class="card">
+                                                <div class="card-image mon-avatar">
+                                                    <figure class="image is-square">
+                                                        <img src="
+
+                                                                {% with 'website/images/mons/'|add:mon.image as image_static %}{% static image_static %}{% endwith %}"
+                                                             alt="Avatar">
+                                                    </figure>
+                                                </div>
+                                                <div class="card-content">
+                                                    <div class="media">
+                                                        <div class="media-content">
+                                                            {% if mon.number == 83 %}
+                                                                <p class="title is-4">#{{ mon.number }} Farfetch'd</p>
+                                                            {% else %}
+                                                                <p class="title is-4">#{{ mon.number }} {{ mon.name.title }}</p>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                    <div class="tile is-ancestor">
+                                                        {% for type in mon.types %}
+                                                            <div class="tile is-parent">
+                                                                {% if type %}
+                                                                    {% if type.name == "grass" %}
+                                                                        <article class="tile is-child tag grass-type type">{{ type.name.title }}</article>
+                                                                    {% elif type.name == "fire" %}
+                                                                        <article class="tile is-child tag fire-type type">{{ type.name.title }}</article>
+                                                                    {% elif type.name == "ground" %}
+                                                                        <article class="tile is-child tag ground-type type">{{ type.name.title }}</article>
+                                                                    {% elif type.name == "electric" %}
+                                                                        <article class="tile is-child tag electric-type type">{{ type.name.title }}</article>
+                                                                    {% elif type.name == "water" %}
+                                                                        <article class="tile is-child tag water-type type">{{ type.name.title }}</article>
+                                                                    {% elif type.name == "rock" %}
+                                                                        <article class="tile is-child tag rock-type type">{{ type.name.title }}</article>
+                                                                    {% elif type.name == "flying" %}
+                                                                        <article class="tile is-child tag flying-type type">{{ type.name.title }}</article>
+                                                                    {% elif type.name == "ice" %}
+                                                                        <article class="tile is-child tag ice-type type">{{ type.name.title }}</article>
+                                                                    {% elif type.name == "normal" %}
+                                                                        <article class="tile is-child tag normal-type type">{{ type.name.title }}</article>
+                                                                    {% elif type.name == "bug" %}
+                                                                        <article class="tile is-child tag bug-type type">{{ type.name.title }}</article>
+                                                                    {% elif type.name == "ghost" %}
+                                                                        <article class="tile is-child tag ghost-type type">{{ type.name.title }}</article>
+                                                                    {% elif type.name == "fighting" %}
+                                                                        <article class="tile is-child tag fighting-type type">{{ type.name.title }}</article>
+                                                                    {% elif type.name == "dragon" %}
+                                                                        <article class="tile is-child tag dragon-type type">{{ type.name.title }}</article>
+                                                                    {% elif type.name == "psychic" %}
+                                                                        <article class="tile is-child tag psychic-type type">{{ type.name.title }}</article>
+                                                                    {% elif type.name == "poison" %}
+                                                                        <article class="tile is-child tag poison-type type">{{ type.name.title }}</article>
+                                                                    {% endif %}
+                                                                {% else %}
+                                                                    <article class="tile is-child"></article>
+                                                                {% endif %}
+                                                            </div>
+                                                        {% endfor %}
                                                     </div>
                                                 </div>
-                                                <div class="content">
-                                                    {{ mon.genus }}
-                                                </div>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
                                 </div>
+                                <!-- if last column in row -->
+                                {% if forloop.counter|divisibleby:"4" and not forloop.last %}
+                                    </div>
+                                    <div class="tile">
+                                {% endif %}
+                            {% endfor %}
                             </div>
-                            <!-- if last column in row -->
-                            {% if forloop.counter|divisibleby:"4" and not forloop.last %}
-                                </div>
-                                <div class="tile">
-                            {% endif %}
-                        {% endfor %}
-                        </div>
+                    </div>
                 </div>
-            </div>
+            {% endif %}
         </div>
     </section>
 {% endblock %}

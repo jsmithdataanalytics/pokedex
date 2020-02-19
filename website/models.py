@@ -24,5 +24,8 @@ class Pokemon(models.Model):
     special = models.IntegerField()
     speed = models.IntegerField()
 
+    def types(self):
+        return [self.primary_type, self.secondary_type]
+
     def __str__(self):
         return f'Pokemon({self.name})'
