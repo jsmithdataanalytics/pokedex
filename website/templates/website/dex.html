@@ -8,11 +8,6 @@
         #search {
             margin-top : 20px
         }
-
-        .mon-avatar {
-            padding          : 20px;
-            background-color : lightgrey;
-        }
     </style>
 {% endblock %}
 {% block content %}
@@ -26,7 +21,9 @@
                         <form action="{% url 'website:dex' %}" method="get" id="search">
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-rounded" type="text" placeholder="Search the dex" name="q">
+                                    <label>
+                                        <input class="input is-rounded" type="text" placeholder="Search the dex" name="q">
+                                    </label>
                                 </div>
                             </div>
                         </form>
@@ -37,8 +34,8 @@
         <div class="container">
             {% if not mon_list %}
                 <div class="columns is-centered">
-                    <div class="column is-half">
-                        <center><p><strong>No results</strong></p></center>
+                    <div class="column is-half has-text-centered">
+                        <p><strong>No results</strong></p>
                     </div>
                 </div>
             {% else %}

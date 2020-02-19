@@ -1,24 +1,36 @@
 {% extends "website/base.html" %}
 {% block content %}
-    {% if mon.number == 83 %}
-        <p class="title is-1">#{{ pokemon.number }} Farfetch'd</p>
-    {% else %}
-        <p class="title is-1">#{{ pokemon.number }} {{ pokemon.name.title }}</p>
-    {% endif %}
-    <div class="content">
-        <ul>
-            <li>primary_type: {{ pokemon.primary_type.name }}</li>
-            <li>secondary_type: {{ pokemon.secondary_type.name|default:"none" }}</li>
-            <li>height: {{ pokemon.height }}</li>
-            <li>weight: {{ pokemon.weight }}</li>
-            <li>genus: {{ pokemon.genus }}</li>
-            <li>description: {{ pokemon.description }}</li>
-            <li>image: {{ pokemon.image }}</li>
-            <li>hp: {{ pokemon.hp }}</li>
-            <li>attack: {{ pokemon.attack }}</li>
-            <li>defense: {{ pokemon.defense }}</li>
-            <li>special: {{ pokemon.special }}</li>
-            <li>speed: {{ pokemon.speed }}</li>
-        </ul>
-    </div>
+    {% load static %}
+    <section class="section">
+        <div class="container">
+            <div class="box">
+                <div class="columns">
+                    <div class="column is-4">
+                        <figure class="image is-square">
+                            <img class="mon-avatar" src="{% with 'website/images/mons/'|add:pokemon.image as image_static %}{% static image_static %}{% endwith %}" alt="{{ pokemon.name }}">
+                        </figure>
+                    </div>
+                    <div class="column">
+                        <div class="content">
+                            {% if mon.number == 83 %}
+                                <p class="title is-3">#{{ pokemon.number }} Farfetch'd</p>
+                            {% else %}
+                                <p class="title is-3">
+                                    #{{ pokemon.number }} {{ pokemon.name.title }}</p>
+                            {% endif %}
+                            <p>{{ pokemon.genus }}</p>
+                            <p>{{ pokemon.description }}</p>
+                            <p>Height: {{ pokemon.height_in_m|floatformat:1 }} m / {{ pokemon.height_in_ft|first|floatformat:0 }}'{{ pokemon.height_in_ft|last|floatformat:0 }}"</p>
+                            <p>Weight: {{ pokemon.weight_in_kg|floatformat:1 }} kg / {{ pokemon.weight_in_lb|floatformat:1 }} lb</p>
+                            <p>HP: {{ pokemon.hp }}</p>
+                            <p>Attack: {{ pokemon.attack }}</p>
+                            <p>Defense: {{ pokemon.defense }}</p>
+                            <p>Special: {{ pokemon.special }}</p>
+                            <p>Speed: {{ pokemon.speed }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

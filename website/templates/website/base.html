@@ -14,6 +14,11 @@
                 flex : 1;
             }
 
+            .mon-avatar {
+            padding          : 20px;
+            background-color : lightgrey;
+            }
+
             .tag.type {
                 color : white;
             }
@@ -86,7 +91,7 @@
         <nav class="navbar is-light" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="/">
-                    <img src="{% static 'website/images/icon.png' %}" width="28" height="28" alt="Logo">
+                    <img src="{% static 'website/images/icon.png' %}" height="28" alt="Logo">
                 </a>
 
                 <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
@@ -145,18 +150,12 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="navbar-end">
-                    <div class="navbar-item">
-                        <div class="buttons">
-                            <a class="button is-danger">
-                                <strong>Sign up</strong>
-                            </a>
-                            <a class="button is-danger is-outlined">
-                                Log in
-                            </a>
-                        </div>
-                    </div>
+                    <a class="navbar-item" href="/">
+                        <figure class="image">
+                            <img src="{% static 'website/images/logo.png' %}" alt="Pokédex"/>
+                        </figure>
+                    </a>
                 </div>
             </div>
         </nav>
