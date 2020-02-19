@@ -1,6 +1,10 @@
 {% extends "website/base.html" %}
 {% block content %}
-    <h1 class="title is-1">#{{ pokemon.number }} {{ pokemon.name.upper }}</h1>
+    {% if mon.number == 83 %}
+        <p class="title is-1">#{{ pokemon.number }} Farfetch'd</p>
+    {% else %}
+        <p class="title is-1">#{{ pokemon.number }} {{ pokemon.name.title }}</p>
+    {% endif %}
     <div class="content">
         <ul>
             <li>primary_type: {{ pokemon.primary_type.name }}</li>
