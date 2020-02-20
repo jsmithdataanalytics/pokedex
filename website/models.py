@@ -23,6 +23,7 @@ class Pokemon(models.Model):
     defense = models.IntegerField()
     special = models.IntegerField()
     speed = models.IntegerField()
+    evolves_from = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True, db_index=True)
 
     def types(self):
         return [self.primary_type, self.secondary_type]
