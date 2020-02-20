@@ -27,6 +27,12 @@
                             <p>Defense: {{ pokemon.defense }}</p>
                             <p>Special: {{ pokemon.special }}</p>
                             <p>Speed: {{ pokemon.speed }}</p>
+                            {% if pokemon.evolves_from %}
+                                <p>Evolves from: {{ pokemon.evolves_from.name.title }}</p>
+                            {% else %}
+                                <p>Evolves from:</p>
+                            {% endif %}
+                            <p>Evolves to:{% for evolution in pokemon.pokemon_set.all %} {{ evolution.name.title }}{% endfor %}</p>
                         </div>
                     </div>
                 </div>
