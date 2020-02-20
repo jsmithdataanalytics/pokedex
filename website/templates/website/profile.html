@@ -4,37 +4,99 @@
     <section class="section">
         <div class="container">
             <div class="box">
-                <div class="columns">
-                    <div class="column is-4">
-                        <figure class="image is-square">
-                            <img class="mon-avatar" src="{% with 'website/images/mons/'|add:pokemon.image as image_static %}{% static image_static %}{% endwith %}" alt="{{ pokemon.name }}">
-                        </figure>
-                    </div>
-                    <div class="column">
-                        <div class="content">
-                            {% if mon.number == 83 %}
-                                <p class="title is-3">#{{ pokemon.number }} Farfetch'd</p>
-                            {% else %}
-                                <p class="title is-3">
-                                    #{{ pokemon.number }} {{ pokemon.name.title }}</p>
-                            {% endif %}
-                            <p>{{ pokemon.genus }}</p>
-                            <p>{{ pokemon.description }}</p>
-                            <p>Height: {{ pokemon.height_in_m|floatformat:1 }} m / {{ pokemon.height_in_ft|first|floatformat:0 }}'{{ pokemon.height_in_ft|last|floatformat:0 }}"</p>
-                            <p>Weight: {{ pokemon.weight_in_kg|floatformat:1 }} kg / {{ pokemon.weight_in_lb|floatformat:1 }} lb</p>
-                            <p>HP: {{ pokemon.hp }}</p>
-                            <p>Attack: {{ pokemon.attack }}</p>
-                            <p>Defense: {{ pokemon.defense }}</p>
-                            <p>Special: {{ pokemon.special }}</p>
-                            <p>Speed: {{ pokemon.speed }}</p>
-                            {% if pokemon.evolves_from %}
-                                <p>Evolves from: {{ pokemon.evolves_from.name.title }}</p>
-                            {% else %}
-                                <p>Evolves from:</p>
-                            {% endif %}
-                            <p>Evolves to:{% for evolution in pokemon.pokemon_set.all %} {{ evolution.name.title }}{% endfor %}</p>
+                <div class="tile is-ancestor">
+                    <div class="tile is-parent is-4">
+                        <div class="tile is-child">
+                            <figure class="image is-square">
+                                <img class="mon-avatar" src="
+                                        {% with 'website/images/mons/'|add:pokemon.image as image_static %}{% static image_static %}{% endwith %}"
+                                     alt="{{ pokemon.name }}">
+                            </figure>
                         </div>
                     </div>
+                    <div class="tile is-vertical">
+                        <div class="tile is-parent">
+                            <div class="tile is-child content">
+                                {% if mon.number == 83 %}
+                                    <p class="title is-1">#{{ pokemon.number }} Farfetch'd</p>
+                                {% else %}
+                                    <p class="title is-1">
+                                        #{{ pokemon.number }} {{ pokemon.name.title }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="tile is-5">
+                            {% for type in pokemon.types %}
+                                <div class="tile is-parent">
+                                    {% if type %}
+                                        <article
+                                                class="tile is-child tag {{ type.name }}-type type">{{ type.name.title }}</article>
+                                    {% else %}
+                                        <article class="tile is-child"></article>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="tile is-parent">
+                            <div class="tile is-child notification">
+                                <p class="title is-6">{{ pokemon.genus }}</p>
+                                <p>{{ pokemon.description }}</p>
+                            </div>
+                        </div>
+                        <div class="tile">
+                            <div class="tile is-parent">
+                                <div class="tile is-child notification">
+                                    <p class="title is-6">Physical Characteristics</p>
+                                    <p>Height: {{ pokemon.height_in_m|floatformat:1 }} m / {{ pokemon.height_in_ft|first|floatformat:0 }}'{{ pokemon.height_in_ft|last|floatformat:0 }}"</p>
+                                    <p>Weight: {{ pokemon.weight_in_kg|floatformat:1 }} kg / {{ pokemon.weight_in_lb|floatformat:1 }} lb</p>
+                                </div>
+                            </div>
+                            <div class="tile is-parent">
+                                <div class="tile is-child notification">
+                                    <p class="title is-6">Base Stats</p>
+                                    <div class="columns">
+                                        <div class="column">
+                                            <p>HP: {{ pokemon.hp }}</p>
+                                            <p>Attack: {{ pokemon.attack }}</p>
+                                            <p>Defense: {{ pokemon.defense }}</p>
+                                        </div>
+                                        <div class="column">
+                                            <p>Special: {{ pokemon.special }}</p>
+                                            <p>Speed: {{ pokemon.speed }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column">
+                    {% if pokemon.evolves_from %}
+                        <a href="{% url 'website:profile' pokemon.evolves_from.number %}">
+                            <div class="notification">
+                                <p>Evolves from: {{ pokemon.evolves_from.name.title }}</p>
+                            </div>
+                        </a>
+                    {% else %}
+                        <div class="notification">
+                            <p>Evolves from:</p>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="column">
+                    {% if pokemon.pokemon_set.all %}
+                        <a href="{% url 'website:profile' pokemon.pokemon_set.all.0.number %}">
+                            <div class="notification">
+                                <p>Evolves to: {{ pokemon.pokemon_set.all.0.name.title }}</p>
+                            </div>
+                        </a>
+                    {% else %}
+                        <div class="notification">
+                            <p>Evolves to:</p>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
