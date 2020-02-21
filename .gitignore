@@ -112,3 +112,5 @@ venv.bak/
 
 db.sqlite3
 data/
+/static/
+
