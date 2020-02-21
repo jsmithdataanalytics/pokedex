@@ -26,7 +26,8 @@ SECRET_KEY = 'bz6_7raxyla5h6=6tih1vw8fuzed@utuvf4n3b6sch)i_fb2&r'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'jsmithdataanalytics.pythonanywhere.com'
+    'jsmithdataanalytics.pythonanywhere.com',
+    '127.0.0.1'
 ]
 
 
