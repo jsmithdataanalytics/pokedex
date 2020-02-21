@@ -25,7 +25,9 @@ SECRET_KEY = 'bz6_7raxyla5h6=6tih1vw8fuzed@utuvf4n3b6sch)i_fb2&r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'jsmithdataanalytics.pythonanywhere.com'
+]
 
 
 # Application definition
